@@ -10,16 +10,16 @@ import {
 
 // Store Clerk's user data
 export const users = pgTable("users", {
-    id: uuid("id").primaryKey(), // Clerk's UUID as primary key
+    id: text("id").primaryKey(), // Clerk's user ID
     email: varchar("email", { length: 255 }).notNull(),
     name: varchar("name", { length: 255 }),
     isPro: boolean("is_pro").notNull().default(false),
-    created_at: timestamp("created_at", { withTimezone: true }).defaultNow(),
+    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
 });
 
 export const tokens = pgTable("tokens", {
     id: uuid("id").primaryKey(),
-    userId: uuid("user_id")
+    userId: text("user_id")
         .notNull()
         .references(() => users.id),
     token: varchar("token", { length: 128 }).notNull(),
@@ -29,7 +29,7 @@ export const tokens = pgTable("tokens", {
 
 export const billing = pgTable("billing", {
     id: uuid("id").primaryKey(),
-    userId: uuid("user_id")
+    userId: text("user_id")
         .notNull()
         .references(() => users.id),
     amount: numeric("amount").notNull(),
@@ -44,7 +44,7 @@ export const billing = pgTable("billing", {
 
 export const quotes = pgTable("quotes", {
     id: uuid("id").primaryKey(),
-    userId: uuid("user_id")
+    userId: text("user_id")
         .notNull()
         .references(() => users.id),
     quote: text("quote").notNull(),

@@ -1,6 +1,6 @@
 CREATE TABLE "billing" (
 	"id" uuid PRIMARY KEY NOT NULL,
-	"user_id" uuid NOT NULL,
+	"user_id" text NOT NULL,
 	"amount" numeric NOT NULL,
 	"currency" varchar(10) NOT NULL,
 	"purchased_at" timestamp with time zone DEFAULT now(),
@@ -11,7 +11,7 @@ CREATE TABLE "billing" (
 --> statement-breakpoint
 CREATE TABLE "quotes" (
 	"id" uuid PRIMARY KEY NOT NULL,
-	"user_id" uuid NOT NULL,
+	"user_id" text NOT NULL,
 	"quote" text NOT NULL,
 	"created_at" timestamp with time zone DEFAULT now(),
 	"updated_at" timestamp with time zone DEFAULT now()
@@ -19,14 +19,14 @@ CREATE TABLE "quotes" (
 --> statement-breakpoint
 CREATE TABLE "tokens" (
 	"id" uuid PRIMARY KEY NOT NULL,
-	"user_id" uuid NOT NULL,
+	"user_id" text NOT NULL,
 	"token" varchar(128) NOT NULL,
 	"created_at" timestamp with time zone DEFAULT now(),
 	"updated_at" timestamp with time zone DEFAULT now()
 );
 --> statement-breakpoint
 CREATE TABLE "users" (
-	"id" uuid PRIMARY KEY NOT NULL,
+	"id" text PRIMARY KEY NOT NULL,
 	"email" varchar(255) NOT NULL,
 	"name" varchar(255),
 	"is_pro" boolean DEFAULT false NOT NULL,
