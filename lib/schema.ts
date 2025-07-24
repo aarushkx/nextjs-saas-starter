@@ -5,7 +5,7 @@ import {
     timestamp,
     boolean,
     uuid,
-    numeric,
+    integer,
 } from "drizzle-orm/pg-core";
 
 // Store Clerk's user data
@@ -22,32 +22,7 @@ export const tokens = pgTable("tokens", {
     userId: text("user_id")
         .notNull()
         .references(() => users.id),
-    token: varchar("token", { length: 128 }).notNull(),
-    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
-    updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
-});
-
-export const billing = pgTable("billing", {
-    id: uuid("id").primaryKey(),
-    userId: text("user_id")
-        .notNull()
-        .references(() => users.id),
-    amount: numeric("amount").notNull(),
-    currency: varchar("currency", { length: 10 }).notNull(),
-    purchasedAt: timestamp("purchased_at", {
-        withTimezone: true,
-    }).defaultNow(),
-    isEmailSent: boolean("is_email_sent").default(false),
-    createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
-    updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
-});
-
-export const quotes = pgTable("quotes", {
-    id: uuid("id").primaryKey(),
-    userId: text("user_id")
-        .notNull()
-        .references(() => users.id),
-    quote: text("quote").notNull(),
+    token: integer("token").notNull().default(100), // 100 free tokens initially
     createdAt: timestamp("created_at", { withTimezone: true }).defaultNow(),
     updatedAt: timestamp("updated_at", { withTimezone: true }).defaultNow(),
 });

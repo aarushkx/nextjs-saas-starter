@@ -1,46 +1,33 @@
-// "use client";
-
-// import React from "react";
-// import { ClerkProvider } from "@clerk/nextjs";
-// import { SidebarProvider, SidebarTrigger } from "@/components/ui/sidebar";
-// import AppSidebar from "@/app/_components/app-sidebar";
-// import { Toaster } from "@/components/ui/sonner";
-
-// const Providers = ({ children }: { children: React.ReactNode }) => {
-//     return (
-//         <ClerkProvider>
-//             <SidebarProvider>
-//                 {/* <AppSidebar /> */}
-//                 <main>
-//                     {/* <SidebarTrigger /> */}
-//                     {children}
-//                 </main>
-//                 <Toaster />
-//             </SidebarProvider>
-//         </ClerkProvider>
-//     );
-// };
-
-// export default Providers;
-
 "use client";
 
 import React from "react";
-import { usePathname } from "next/navigation"; // Import for path check
 import { ClerkProvider } from "@clerk/nextjs";
 import { Toaster } from "@/components/ui/sonner";
+import { ThemeProvider } from "./theme-provider";
+import { shadcn } from "@clerk/themes";
 
 const Providers = ({ children }: { children: React.ReactNode }) => {
-    // const pathname = usePathname();
-    // const excludedPaths = ["/", "/sign-in", "/sign-up"]; // No sidebar on these
-    // const showSidebar = !excludedPaths.includes(pathname); // Safety check (though MainLayout handles main pages)
-
     return (
-        <ClerkProvider>
-            {/* Only render SidebarProvider if on main pages (redundant but safe if not using nested layout) */}
-            {/* {showSidebar ? <main>{children}</main> : <main>{children}</main>} */}
-            <main>{children}</main>
-            <Toaster />
+        <ClerkProvider
+            appearance={{
+                baseTheme: shadcn,
+                layout: {
+                    socialButtonsPlacement: "bottom",
+                    socialButtonsVariant: "blockButton",
+                    termsPageUrl: "https://clerk.com/terms", // Change to your terms page URL (optional)
+                    privacyPageUrl: "https://clerk.com/privacy", // Change to your privacy page URL (optional)
+                },
+            }}
+        >
+            <ThemeProvider
+                attribute="class"
+                defaultTheme="light"
+                enableSystem
+                disableTransitionOnChange
+            >
+                <main>{children}</main>
+                <Toaster />
+            </ThemeProvider>
         </ClerkProvider>
     );
 };

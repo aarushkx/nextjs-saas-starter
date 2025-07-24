@@ -16,12 +16,10 @@ import {
 import { Separator } from "@/components/ui/separator";
 import {
     CreditCard,
-    Home,
     Loader2,
-    Quote,
     Settings,
     Sparkles,
-    Wallet,
+    LayoutDashboard,
 } from "lucide-react";
 import { UserButton, useUser } from "@clerk/nextjs";
 import { APP_NAME } from "@/lib/constants";
@@ -29,14 +27,9 @@ import { toast } from "sonner";
 
 const items = [
     {
-        title: "Home",
-        href: "/home",
-        icon: Home,
-    },
-    {
-        title: "Quotes",
-        href: "/quotes",
-        icon: Quote,
+        title: "Dashboard",
+        href: "/dashboard",
+        icon: LayoutDashboard,
     },
     {
         title: "Tokens",
@@ -44,14 +37,9 @@ const items = [
         icon: Sparkles,
     },
     {
-        title: "Billing",
-        href: "/billing",
+        title: "Plans",
+        href: "/plans",
         icon: CreditCard,
-    },
-    {
-        title: "Wallet",
-        href: "/wallet",
-        icon: Wallet,
     },
     {
         title: "Settings",
@@ -129,10 +117,10 @@ const AppSidebar = () => {
                                     className={`text-xs ${isPro ? "text-green-800 font-semibold" : "text-gray-500"}`}
                                 >
                                     {isLoading ? (
-                                        <>
-                                            <Loader2 className="h-3 w-3 animate-spin inline mr-1" />
-                                            Loading
-                                        </>
+                                        <div className="flex items-center text-muted-foreground text-sm mt-2">
+                                            <Loader2 className="w-3 h-3 animate-spin mr-1" />
+                                            <span>Loading...</span>
+                                        </div>
                                     ) : isPro ? (
                                         "Pro"
                                     ) : (

@@ -20,13 +20,6 @@ const LandingPage = () => {
                     <Link href="/sign-in">Sign In</Link>
                 </Button>
             </div>
-
-            {/* TODO: This is only for testing */}
-            <div className="flex items-center justify-center mt-6">
-                <Button asChild variant="link">
-                    <Link href="/home">Home (Testing)</Link>
-                </Button>
-            </div>
         </div>
     );
 };

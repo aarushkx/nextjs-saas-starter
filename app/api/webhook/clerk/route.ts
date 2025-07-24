@@ -3,9 +3,10 @@ import { headers } from "next/headers";
 import { Webhook } from "svix";
 import { WebhookEvent } from "@clerk/nextjs/server";
 import { db } from "@/lib/db";
-import { users, tokens, billing, quotes } from "@/lib/schema";
+import { users, tokens } from "@/lib/schema";
 import { eq } from "drizzle-orm";
 import { sendWelcomeEmail } from "@/services/send-email";
+import { v4 as uuidv4 } from "uuid";
 
 export async function POST(request: NextRequest) {
     const CLERK_WEBHOOK_SECRET = process.env.CLERK_WEBHOOK_SECRET;
@@ -88,6 +89,12 @@ export async function POST(request: NextRequest) {
                     isPro: false,
                 });
 
+                await db.insert(tokens).values({
+                    id: uuidv4(),
+                    userId: id,
+                    token: 100, // Explicitly set to 100 free tokens initially
+                });
+
                 const emailResponse = await sendWelcomeEmail(
                     primaryEmail.email_address,
                     first_name ?? "User"
@@ -131,8 +138,6 @@ export async function POST(request: NextRequest) {
                     );
 
                 await db.delete(tokens).where(eq(tokens.userId, id));
-                await db.delete(billing).where(eq(billing.userId, id));
-                await db.delete(quotes).where(eq(quotes.userId, id));
                 await db.delete(users).where(eq(users.id, id));
 
                 return NextResponse.json(
