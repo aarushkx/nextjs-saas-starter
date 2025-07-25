@@ -516,7 +516,7 @@ const CTASection = () => {
                                     className="flex items-center justify-center gap-2"
                                 >
                                     <Github className="h-4 w-4" />
-                                    Star on GitHub
+                                    View on GitHub
                                 </a>
                             </Button>
                         </div>
