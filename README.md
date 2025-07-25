@@ -7,7 +7,7 @@ A production-grade, full-stack SaaS starter kit built with **Next.js**, **TypeSc
 ## 🌐 Live Demo
 
 Want to see it in action?  
-👉 [Visit the live demo](https://nextjs-saas-starter.vercel.app)
+👉 [Visit the live demo](https://nextjs-mysaas.vercel.app/)
 
 ## 📋 Overview
 
