@@ -1,7 +1,6 @@
 "use client";
 
 import Link from "next/link";
-import { APP_NAME } from "@/lib/constants";
 import { PricingTable } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -17,13 +16,13 @@ import {
     Zap,
     ArrowRight,
     Star,
-    Users,
-    Clock,
     Shield,
     Github,
     Layout,
     PanelLeft,
     Network,
+    Rocket,
+    Lock,
 } from "lucide-react";
 import Footer from "@/components/custom/footer";
 
@@ -92,8 +91,8 @@ const features = [
     },
     {
         icon: <Network className="w-6 h-6 text-primary" />,
-        title: "Webhook Setup",
-        description: "Real-time updates with webhooks.",
+        title: "Webhook",
+        description: "Sync and connect with external services.",
     },
     {
         icon: (
@@ -107,13 +106,13 @@ const features = [
                 <path d="m16.24,13.9c.93-.51,1.65-1.22,2.19-2.11.53-.91.8-1.93.8-3.06s-.27-2.07-.8-2.93c-.53-.87-1.27-1.56-2.21-2.06-.93-.5-1.96-.75-3.11-.75H5v18h4.17v-6.33h2.25l3.56,6.33h4.99l-4.03-6.94c.1-.05.2-.1.3-.16Zm-1.59-3.7c-.17.36-.43.64-.77.85-.33.19-.71.28-1.16.28h-3.55v-4.68h3.16c.55,0,1.01.09,1.39.28.39.19.69.46.9.82.21.34.31.75.31,1.21s-.09.87-.28,1.23Z"></path>
             </svg>
         ),
-        title: "Email with Resend",
+        title: "Resend",
         description: "Integrated email service.",
     },
     {
         icon: <Icon icon="gemini" alt="Gemini" />,
         title: "Google Gemini",
-        description: "Intelligent features and automation.",
+        description: "Ready for intelligent features.",
     },
     {
         icon: (
@@ -171,22 +170,37 @@ const testimonials = [
     {
         name: "Alex Johnson",
         role: "Indie Developer",
-        quote: "This starter kit saved me weeks of setup time. The AI integration is a game-changer!",
-        avatar: "AJ",
+        quote: "Honestly didn’t expect it to be this smooth. The built-in tools saved me a ton of boilerplate, and the project structure made everything feel intuitive right from the start.",
+        avatar: (
+            <img
+                src="https://images.unsplash.com/photo-1633332755192-727a05c4013d?w=1000&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8bWFuJTIwYXZhdGFyfGVufDB8fDB8fHww"
+                alt="AJ"
+            />
+        ),
         rating: 5,
     },
     {
         name: "Sarah Lee",
         role: "Startup Founder",
-        quote: "Perfect foundation for our SaaS product. Clerk billing and auth work flawlessly.",
-        avatar: "SL",
+        quote: "It gave us a head start on our MVP. Clerk auth and billing were already wired in, which meant we could focus on building our actual product instead of reinventing basic infrastructure.",
+        avatar: (
+            <img
+                src="https://images.unsplash.com/photo-1616325629936-99a9013c29c6?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTV8fGFzaWFuJTIwZ2lybHxlbnwwfHwwfHx8MA%3D%3D"
+                alt="SL"
+            />
+        ),
         rating: 5,
     },
     {
         name: "Mike Chen",
         role: "Freelance Engineer",
-        quote: "The combination of NeonDB, Drizzle, and shadcn/ui made development a breeze.",
-        avatar: "MC",
+        quote: "This saved me from setup hell. Everything just worked out of the box — I had my backend and UI running in no time. The stack felt modern but not overwhelming.",
+        avatar: (
+            <img
+                src="https://images.unsplash.com/photo-1544168190-79c17527004f?w=600&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8OHx8YXNpYW4lMjBndXl8ZW58MHx8MHx8fDA%3D"
+                alt="MC"
+            />
+        ),
         rating: 5,
     },
 ];
@@ -201,8 +215,8 @@ const faqs = [
         answer: "Yes, everything is fully customizable. You can extend or modify any part to fit your specific needs.",
     },
     {
-        question: "What support is available?",
-        answer: "We provide documentation, community forums, and email support for all users.",
+        question: "Can I use this even if I'm not building a SaaS?",
+        answer: "Yes! While optimized for SaaS, it's a great base for any modern app with auth, DB, AI, and UI pre-configured.",
     },
     {
         question: "Can I use it for commercial projects?",
@@ -235,14 +249,13 @@ const HeroSection = () => {
             <div className="container px-4">
                 <div className="flex flex-col items-center text-center space-y-8">
                     <Badge variant="secondary" className="px-4 py-2">
-                        <Zap className="w-4 h-4 mr-2" />
-                        New: AI-powered components now available
+                        <Zap className="w-4 h-4" />
+                        Everything You Need to Start
                     </Badge>
 
                     <div className="space-y-4 max-w-4xl">
                         <h1 className="text-4xl font-bold tracking-tighter sm:text-5xl md:text-6xl lg:text-7xl">
-                            Build Faster with{" "}
-                            <span className="text-primary">{APP_NAME}</span>
+                            Kickstart Your SaaS in Minutes
                         </h1>
                         <p className="mx-auto max-w-2xl text-muted-foreground text-lg sm:text-xl">
                             A complete SaaS starter kit powered by Next.js,
@@ -251,14 +264,19 @@ const HeroSection = () => {
                         </p>
                     </div>
 
-                    <div className="flex flex-col sm:flex-row gap-4">
+                    <div className="mx-auto max-w-md w-full grid gap-4 sm:grid-cols-2">
                         <Button size="lg" asChild className="group">
                             <Link href="/sign-up">
                                 Start Building Now
                                 <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                             </Link>
                         </Button>
-                        <Button size="lg" variant="outline" className="group">
+                        <Button
+                            asChild
+                            size="lg"
+                            variant="outline"
+                            className="group"
+                        >
                             <a
                                 href="https://github.com/aarushkx/nextjs-saas-starter"
                                 target="_blank"
@@ -291,10 +309,10 @@ const HeroSection = () => {
                         </div>
                         <div className="flex flex-col items-center space-y-2">
                             <div className="text-3xl sm:text-4xl font-bold text-primary">
-                                2-Min
+                                100%
                             </div>
                             <div className="text-sm text-muted-foreground">
-                                Deployment Ready
+                                Open Source
                             </div>
                         </div>
                     </div>
@@ -310,12 +328,12 @@ const FeaturesSection = () => {
             <div className="container px-4 max-w-6xl mx-auto">
                 <div className="space-y-4 mb-16 text-center">
                     <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                        Everything You Need to{" "}
-                        <span className="text-primary">Succeed</span>
+                        All the Tech You Actually Want
                     </h2>
                     <p className="mx-auto max-w-xl text-muted-foreground text-base sm:text-lg">
-                        Carefully crafted components and integrations that work
-                        seamlessly together
+                        From UI to auth to to AI to billing, everything works
+                        together smoothly so you can skip the boilerplate and
+                        dive right in.
                     </p>
                 </div>
 
@@ -356,19 +374,21 @@ const SocialProofSection = () => {
                     </p>
                     <div className="flex items-center justify-center space-x-8 opacity-60">
                         <div className="flex items-center space-x-2">
-                            <Users className="h-5 w-5" />
+                            <Rocket className="h-5 w-5" />
                             <span className="font-semibold">
-                                Developer Community
+                                Built for Speed
                             </span>
                         </div>
                         <div className="flex items-center space-x-2">
-                            <Clock className="h-5 w-5" />
-                            <span className="font-semibold">24/7 Support</span>
+                            <Lock className="h-5 w-5" />
+                            <span className="font-semibold">
+                                Secure and Scalable
+                            </span>
                         </div>
                         <div className="flex items-center space-x-2">
                             <Shield className="h-5 w-5" />
                             <span className="font-semibold">
-                                Enterprise Ready
+                                Production Ready
                             </span>
                         </div>
                     </div>
@@ -384,11 +404,10 @@ const TestimonialsSection = () => {
             <div className="container px-4">
                 <div className="text-center space-y-4 mb-16">
                     <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                        Loved by{" "}
-                        <span className="text-primary">Developers</span>
+                        Loved by Developers
                     </h2>
                     <p className="mx-auto max-w-2xl text-muted-foreground text-lg">
-                        See what our community is saying about {APP_NAME}
+                        See what our community has to say.
                     </p>
                 </div>
 
@@ -416,7 +435,7 @@ const TestimonialsSection = () => {
                                 </p>
 
                                 <div className="flex items-center space-x-3 pt-4">
-                                    <div className="w-10 h-10 rounded-full bg-primary text-primary-foreground flex items-center justify-center font-semibold text-sm">
+                                    <div className="w-10 h-10 rounded-full overflow-hidden">
                                         {testimonial.avatar}
                                     </div>
                                     <div>
@@ -443,11 +462,12 @@ const PricingSection = () => {
             <div className="container px-4">
                 <div className="text-center space-y-4 mb-16">
                     <h2 className="text-3xl font-bold tracking-tighter sm:text-4xl md:text-5xl">
-                        Simple <span className="text-primary">Pricing</span>
+                        Pick a Plan That Works Best for You
                     </h2>
                     <p className="mx-auto max-w-2xl text-muted-foreground text-lg">
-                        Choose the plan that fits your needs. All plans include
-                        lifetime access.
+                        Choose the plan that fits your needs. Built for
+                        individuals and teams who value speed, clarity, and
+                        control.
                     </p>
                 </div>
 
@@ -470,19 +490,34 @@ const CTASection = () => {
                             Ready to Build Your SaaS?
                         </h2>
                         <p className="mx-auto max-w-2xl text-muted-foreground text-lg">
-                            Join thousands of developers who have already
-                            accelerated their journey with {APP_NAME}. Start
-                            building your next big idea today.
+                            You bring the idea — this gives it structure, flow,
+                            and momentum. Designed to handle the boring parts so
+                            you can focus on progress. Start shipping with
+                            clarity from the very first commit.
                         </p>
-                        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-                            <Button size="lg" asChild className="group">
+
+                        <div className="mx-auto max-w-md w-full grid gap-4 sm:grid-cols-2">
+                            <Button size="lg" asChild className="w-full group">
                                 <Link href="/sign-up">
                                     Start Your Journey Today
-                                    <ArrowRight className="ml-2 h-4 w-4 transition-transform group-hover:translate-x-1" />
+                                    <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" />
                                 </Link>
                             </Button>
-                            <Button size="lg" variant="outline">
-                                View Documentation
+                            <Button
+                                asChild
+                                size="lg"
+                                variant="outline"
+                                className="w-full group"
+                            >
+                                <a
+                                    href="https://github.com/aarushkx/nextjs-saas-starter"
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="flex items-center justify-center gap-2"
+                                >
+                                    <Github className="h-4 w-4" />
+                                    Star on GitHub
+                                </a>
                             </Button>
                         </div>
                     </CardContent>
@@ -502,7 +537,8 @@ const FAQSection = () => {
                         <span className="text-primary">Questions</span>
                     </h2>
                     <p className="mx-auto max-w-2xl text-muted-foreground text-lg">
-                        Everything you need to know about {APP_NAME}
+                        Got questions? We’ve got clear answers to help you get
+                        started with confidence.
                     </p>
                 </div>
 

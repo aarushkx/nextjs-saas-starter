@@ -1,19 +1,38 @@
 "use client";
 
-import Link from "next/link";
 import { Separator } from "@/components/ui/separator";
 import { APP_NAME } from "@/lib/constants";
 
 const Footer = () => {
+    const product = [
+        { id: 1, href: "#features", text: "Features" },
+        { id: 2, href: "#pricing", text: "Pricing" },
+        { id: 3, href: "#", text: "Documentation" },
+        { id: 4, href: "#", text: "Changelog" },
+    ];
+
+    const company = [
+        { id: 1, href: "#", text: "About" },
+        { id: 2, href: "#", text: "Blog" },
+        { id: 3, href: "#", text: "Careers" },
+        { id: 4, href: "#", text: "Contact" },
+    ];
+
+    const legal = [
+        { id: 1, href: "#", text: "Privacy Policy" },
+        { id: 2, href: "#", text: "Terms of Service" },
+        { id: 3, href: "#", text: "Cookie Policy" },
+    ];
+
     return (
         <footer className="border-t bg-background">
             <div className="container px-4 py-16">
                 <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
                     <div className="space-y-4">
                         <div className="flex items-center space-x-2">
-                            <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-primary-foreground font-bold text-sm">
+                            {/* <div className="flex items-center justify-center w-8 h-8 rounded-lg bg-primary text-primary-foreground font-bold text-sm">
                                 {APP_NAME.charAt(0)}
-                            </div>
+                            </div> */}
                             <span className="font-bold text-xl">
                                 {APP_NAME}
                             </span>
@@ -27,84 +46,45 @@ const Footer = () => {
                     <div className="space-y-4">
                         <h4 className="font-semibold">Product</h4>
                         <nav className="flex flex-col space-y-2 text-sm text-muted-foreground">
-                            <a
-                                href="#features"
-                                className="hover:text-foreground transition-colors"
-                            >
-                                Features
-                            </a>
-                            <a
-                                href="#pricing"
-                                className="hover:text-foreground transition-colors"
-                            >
-                                Pricing
-                            </a>
-                            <a
-                                href="#"
-                                className="hover:text-foreground transition-colors"
-                            >
-                                Documentation
-                            </a>
-                            <a
-                                href="#"
-                                className="hover:text-foreground transition-colors"
-                            >
-                                Changelog
-                            </a>
+                            {product.map((item) => (
+                                <a
+                                    key={item.id}
+                                    href={item.href}
+                                    className="hover:text-foreground transition-colors"
+                                >
+                                    {item.text}
+                                </a>
+                            ))}
                         </nav>
                     </div>
 
                     <div className="space-y-4">
                         <h4 className="font-semibold">Company</h4>
                         <nav className="flex flex-col space-y-2 text-sm text-muted-foreground">
-                            <a
-                                href="#"
-                                className="hover:text-foreground transition-colors"
-                            >
-                                About
-                            </a>
-                            <a
-                                href="#"
-                                className="hover:text-foreground transition-colors"
-                            >
-                                Blog
-                            </a>
-                            <a
-                                href="#"
-                                className="hover:text-foreground transition-colors"
-                            >
-                                Careers
-                            </a>
-                            <a
-                                href="#"
-                                className="hover:text-foreground transition-colors"
-                            >
-                                Contact
-                            </a>
+                            {company.map((item) => (
+                                <a
+                                    key={item.id}
+                                    href={item.href}
+                                    className="hover:text-foreground transition-colors"
+                                >
+                                    {item.text}
+                                </a>
+                            ))}
                         </nav>
                     </div>
 
                     <div className="space-y-4">
                         <h4 className="font-semibold">Legal</h4>
                         <nav className="flex flex-col space-y-2 text-sm text-muted-foreground">
-                            <Link
-                                href="/privacy"
-                                className="hover:text-foreground transition-colors"
-                            >
-                                Privacy Policy
-                            </Link>
-                            <Link
-                                href="/terms"
-                                className="hover:text-foreground transition-colors"
-                            >
-                                Terms of Service
-                            </Link>
-                            <a
-                                href="#"
-                                className="hover:text-foreground transition-colors"
-                            >
-                                Cookie Policy
-                            </a>
+                            {legal.map((item) => (
+                                <a
+                                    key={item.id}
+                                    href={item.href}
+                                    className="hover:text-foreground transition-colors"
+                                >
+                                    {item.text}
+                                </a>
+                            ))}
                         </nav>
                     </div>
                 </div>
