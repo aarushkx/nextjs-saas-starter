@@ -5,9 +5,8 @@ const publicRoutes = [
     "/sign-up(.*)",
     "/sign-in(.*)",
     "/api/webhook(.*)",
-    "/pricing/(.*)",
+    "/pricing(.*)",
 ];
-publicRoutes.push("/dashboard", "/tokens", "/plans", "/settings"); // TODO: Added for testing. Remove later.
 const isPublicRoute = createRouteMatcher(publicRoutes);
 
 export default clerkMiddleware(async (auth, req) => {

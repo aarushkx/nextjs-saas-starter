@@ -10,6 +10,7 @@ import {
 } from "@/components/ui/popover";
 import { Menu, X } from "lucide-react";
 import { APP_NAME } from "@/lib/constants";
+import ThemeToggle from "@/app/_components/theme-toggle";
 
 const Navbar = () => {
     const [open, setOpen] = useState(false);
@@ -21,7 +22,7 @@ const Navbar = () => {
     ];
 
     return (
-        <nav className="fixed top-0 left-0 w-full border-b shadow-xs z-50">
+        <nav className="bg-primary-foreground fixed top-0 left-0 w-full border-b shadow-xs z-50">
             <div className="container mx-auto flex items-center justify-between h-16 px-4 sm:px-6 lg:px-8">
                 <Link href="/" className="text-xl font-bold">
                     {APP_NAME}
@@ -39,10 +40,12 @@ const Navbar = () => {
                             <Link href={item.href}>{item.label}</Link>
                         </Button>
                     ))}
+                    <ThemeToggle />
                 </div>
 
                 {/* Mobile Hamburger */}
                 <div className="md:hidden">
+                    <ThemeToggle variant="ghost" />
                     <Popover open={open} onOpenChange={setOpen}>
                         <PopoverTrigger asChild>
                             <Button

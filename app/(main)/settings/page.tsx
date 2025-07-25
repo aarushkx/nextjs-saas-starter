@@ -10,7 +10,7 @@ const SettingsPage = () => {
                 <div className="border rounded-md p-4">
                     <div className="flex items-center justify-between">
                         <span className="text-lg font-medium">Theme</span>
-                        <ThemeToggle />
+                        <ThemeToggle variant="outline" />
                     </div>
                     <p className="text-muted-foreground text-sm mt-0.5">
                         Choose your preferred theme: Light, Dark, or System

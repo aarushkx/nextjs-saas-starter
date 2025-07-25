@@ -84,8 +84,8 @@ const AppSidebar = () => {
         <Sidebar collapsible="icon">
             <SidebarContent>
                 <SidebarGroup>
-                    <SidebarGroupLabel className="text-md py-8">
-                        {APP_NAME}
+                    <SidebarGroupLabel className="text-lg py-8">
+                        <Link href="/">{APP_NAME}</Link>
                     </SidebarGroupLabel>
                     <SidebarGroupContent>
                         <SidebarMenu>
