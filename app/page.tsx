@@ -372,20 +372,20 @@ const SocialProofSection = () => {
                     <p className="text-muted-foreground font-medium">
                         Trusted by developers worldwide
                     </p>
-                    <div className="flex items-center justify-center space-x-8 opacity-60">
-                        <div className="flex items-center space-x-2">
+                    <div className="grid grid-cols-3 gap-4 opacity-60 sm:flex sm:flex-row sm:items-center sm:justify-center sm:gap-0 sm:space-x-8">
+                        <div className="flex flex-col items-center space-y-2 sm:flex-row sm:items-center sm:space-x-2 sm:space-y-0">
                             <Rocket className="h-5 w-5" />
                             <span className="font-semibold">
                                 Built for Speed
                             </span>
                         </div>
-                        <div className="flex items-center space-x-2">
+                        <div className="flex flex-col items-center space-y-2 sm:flex-row sm:items-center sm:space-x-2 sm:space-y-0">
                             <Lock className="h-5 w-5" />
                             <span className="font-semibold">
                                 Secure and Scalable
                             </span>
                         </div>
-                        <div className="flex items-center space-x-2">
+                        <div className="flex flex-col items-center space-y-2 sm:flex-row sm:items-center sm:space-x-2 sm:space-y-0">
                             <Shield className="h-5 w-5" />
                             <span className="font-semibold">
                                 Production Ready
