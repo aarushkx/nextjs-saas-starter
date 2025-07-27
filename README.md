@@ -64,7 +64,7 @@ Follow the steps below to get your development environment running:
 
 3. Configure environment variables
 
-    Create a `.env.local` file at the root and copy the contents of `.env.sample` into it. Replace with your own API keys and credentials.
+    Rename the `.env.sample` file to `.env.local` and replace with your own API keys and credentials.
 
 4. Run migrations
 
